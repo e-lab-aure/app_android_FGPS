@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icone premier plan : epingle de localisation blanche -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Corps de l'epingle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,18
+            C41.3,18 31,28.3 31,41
+            C31,57.5 54,90 54,90
+            C54,90 77,57.5 77,41
+            C77,28.3 66.7,18 54,18 Z" />
+
+    <!-- Cercle interieur (trou) -->
+    <path
+        android:fillColor="#1A1A2E"
+        android:pathData="M54,33
+            A8,8 0 1,0 54,49
+            A8,8 0 1,0 54,33 Z" />
+
+</vector>
