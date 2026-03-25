@@ -1,0 +1,29 @@
+# Android generé
+*.iml
+.gradle/
+local.properties
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Android Studio
+.idea/
+*.iws
+out/
+
+# Logs
+*.log
+
+# Fichiers sensibles
+.env
+.env.*
+!.env.example
+
+# Claude
+CLAUDE.md
