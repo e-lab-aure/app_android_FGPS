@@ -26,7 +26,13 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            // Minification et obfuscation activees en release
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 }

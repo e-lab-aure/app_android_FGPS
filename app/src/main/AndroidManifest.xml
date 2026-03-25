@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Permission interne : seule l'app elle-meme peut declencher TOGGLE -->
+    <permission
+        android:name="com.fgps.permission.TOGGLE"
+        android:protectionLevel="signature" />
+
     <!-- Acces a la localisation precise (requis pour injecter des positions fictives) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- Autorisation de position fictive (a activer aussi dans Options developpeur) -->
@@ -9,12 +14,14 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <!-- Requis sur Android 14+ pour les services de localisation en premier plan -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Requis pour envoyer l'action TOGGLE depuis le widget -->
+    <uses-permission android:name="com.fgps.permission.TOGGLE" />
 
     <application
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/Theme.FGPS"
-        android:allowBackup="true">
+        android:allowBackup="false">
 
         <!-- Activite de lancement : affiche les instructions de configuration -->
         <activity
@@ -32,10 +39,12 @@
             android:foregroundServiceType="location"
             android:exported="false" />
 
-        <!-- Fournisseur du widget ON/OFF -->
+        <!-- Fournisseur du widget ON/OFF
+             android:permission : seule l'app signee avec la meme cle peut envoyer TOGGLE -->
         <receiver
             android:name=".GpsWidgetProvider"
-            android:exported="true">
+            android:exported="true"
+            android:permission="com.fgps.permission.TOGGLE">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="com.fgps.TOGGLE" />

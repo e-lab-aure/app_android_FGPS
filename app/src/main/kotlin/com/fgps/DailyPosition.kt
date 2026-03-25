@@ -31,8 +31,11 @@ object DailyPosition {
         val lat = rng.nextDouble(-75.0, 75.0)
         val lon = rng.nextDouble(-180.0, 180.0)
         val position = GpsPosition(lat, lon)
-        Log.d(TAG, "Position du jour calculee : lat=%.4f, lon=%.4f (seed=$seed)"
-            .format(lat, lon))
+        // Log limite au mode debug pour eviter la saturation en production
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Position du jour calculee : lat=%.4f, lon=%.4f (seed=$seed)"
+                .format(lat, lon))
+        }
         return position
     }
 }

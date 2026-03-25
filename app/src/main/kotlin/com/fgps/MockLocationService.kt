@@ -180,8 +180,10 @@ class MockLocationService : Service() {
 
         /**
          * Indique si le service est actuellement en cours d'execution.
-         * Mis a jour dans [onCreate] et [onDestroy].
+         * @Volatile garantit la visibilite immediate entre les threads
+         * (widget BroadcastReceiver et thread principal du service).
          */
+        @Volatile
         var isRunning = false
             private set
     }
