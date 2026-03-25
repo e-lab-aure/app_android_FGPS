@@ -5,9 +5,9 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.location.Criteria
 import android.location.Location
 import android.location.LocationManager
+import android.location.provider.ProviderProperties
 import android.os.*
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -79,8 +79,8 @@ class MockLocationService : Service() {
                 /* supportsAltitude   */ true,
                 /* supportsSpeed      */ true,
                 /* supportsBearing    */ true,
-                /* powerUsage         */ Criteria.POWER_LOW,
-                /* accuracy           */ Criteria.ACCURACY_FINE
+                /* powerUsage         */ ProviderProperties.POWER_USAGE_LOW,
+                /* accuracy           */ ProviderProperties.ACCURACY_FINE
             )
             locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true)
             Log.i(TAG, "Fournisseur GPS fictif enregistre et active")
@@ -118,11 +118,9 @@ class MockLocationService : Service() {
             accuracy = 3.0f
             time = System.currentTimeMillis()
             elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                verticalAccuracyMeters = 3.0f
-                speedAccuracyMetersPerSecond = 0.0f
-                bearingAccuracyDegrees = 0.0f
-            }
+            verticalAccuracyMeters = 3.0f
+            speedAccuracyMetersPerSecond = 0.0f
+            bearingAccuracyDegrees = 0.0f
         }
         try {
             locationManager.setTestProviderLocation(LocationManager.GPS_PROVIDER, location)
@@ -135,19 +133,17 @@ class MockLocationService : Service() {
     // ── Notification persistante ───────────────────────────────────────────
 
     /**
-     * Cree le canal de notification requis sur Android 8+.
+     * Cree le canal de notification (minSdk 26 = Android 8, toujours requis).
      * L'importance est basse pour ne pas deranger l'utilisateur.
      */
     private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                "FGPS",
-                NotificationManager.IMPORTANCE_LOW
-            ).apply { description = "Simulation de position GPS active" }
-            getSystemService(NotificationManager::class.java)
-                .createNotificationChannel(channel)
-        }
+        val channel = NotificationChannel(
+            CHANNEL_ID,
+            "FGPS",
+            NotificationManager.IMPORTANCE_LOW
+        ).apply { description = "Simulation de position GPS active" }
+        getSystemService(NotificationManager::class.java)
+            .createNotificationChannel(channel)
     }
 
     /**

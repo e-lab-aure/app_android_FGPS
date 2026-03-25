@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.util.Log
 import android.widget.RemoteViews
 
@@ -57,11 +56,7 @@ class GpsWidgetProvider : AppWidgetProvider() {
             context.stopService(svc)
         } else {
             Log.i(TAG, "Demarrage du service demande depuis le widget")
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                context.startForegroundService(svc)
-            } else {
-                context.startService(svc)
-            }
+            context.startForegroundService(svc)
         }
         val mgr = AppWidgetManager.getInstance(context)
         val ids = mgr.getAppWidgetIds(ComponentName(context, GpsWidgetProvider::class.java))
