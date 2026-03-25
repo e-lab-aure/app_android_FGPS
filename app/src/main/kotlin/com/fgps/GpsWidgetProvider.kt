@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -77,9 +76,10 @@ class GpsWidgetProvider : AppWidgetProvider() {
             Log.i(TAG, "Demarrage du service demande depuis le widget")
             context.startForegroundService(svc)
         }
-        val mgr = AppWidgetManager.getInstance(context)
-        val ids = mgr.getAppWidgetIds(ComponentName(context, GpsWidgetProvider::class.java))
-        updateAll(context, mgr, ids)
+        // Pas de updateAll() ici : onCreate() et onDestroy() du service
+        // appellent refreshWidget() une fois isRunning reellement mis a jour,
+        // ce qui evite la race condition (widget affiche OFF alors que le
+        // service tourne encore).
     }
 
     companion object {

@@ -47,6 +47,8 @@ class MockLocationService : Service() {
         startForeground(NOTIF_ID, buildNotification())
         addMockProvider()
         handler.post(ticker)
+        // Rafraichissement du widget apres que isRunning est a true
+        refreshWidget()
     }
 
     override fun onDestroy() {
