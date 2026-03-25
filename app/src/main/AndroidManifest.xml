@@ -15,6 +15,16 @@
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="true">
 
+        <!-- Activite de lancement : affiche les instructions de configuration -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <!-- Service de simulation GPS tourne en premier plan -->
         <service
             android:name=".MockLocationService"

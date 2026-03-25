@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="#1A1A2E">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FGPS"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fake GPS"
+        android:textColor="#884CAF50"
+        android:textSize="16sp"
+        android:layout_marginBottom="48dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Configuration requise"
+        android:textColor="#CCFFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.  Activez les Options developpeur\n    (Parametres > A propos > taper 7x sur le numero de build)\n\n2.  Allez dans Options developpeur\n    > Application de position fictive\n    > Selectionnez FGPS\n\n3.  Ajoutez le widget FGPS sur votre ecran d&#8217;accueil\n\n4.  Appuyez sur le widget pour activer / desactiver"
+        android:textColor="#AAFFFFFF"
+        android:textSize="14sp"
+        android:lineSpacingMultiplier="1.4" />
+
+</LinearLayout>
