@@ -1,6 +1,7 @@
 package com.fgps
 
 import android.app.*
+import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
