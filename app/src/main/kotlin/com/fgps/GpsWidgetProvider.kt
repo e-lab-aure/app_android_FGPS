@@ -1,13 +1,16 @@
 package com.fgps
 
+import android.Manifest
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.util.Log
 import android.widget.RemoteViews
+import androidx.core.content.ContextCompat
 
 /**
  * Fournisseur du widget Android permettant d'activer ou desactiver
@@ -47,6 +50,9 @@ class GpsWidgetProvider : AppWidgetProvider() {
      * Demarre ou arrete [MockLocationService] selon son etat courant,
      * puis force le rafraichissement de tous les widgets.
      *
+     * Si la permission ACCESS_FINE_LOCATION n'est pas accordee, ouvre
+     * [MainActivity] pour guider l'utilisateur plutot que de crasher.
+     *
      * @param context Contexte Android necessaire pour demarrer/arreter le service.
      */
     private fun toggle(context: Context) {
@@ -55,6 +61,19 @@ class GpsWidgetProvider : AppWidgetProvider() {
             Log.i(TAG, "Arret du service demande depuis le widget")
             context.stopService(svc)
         } else {
+            val permissionGranted = ContextCompat.checkSelfPermission(
+                context, Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+
+            if (!permissionGranted) {
+                Log.w(TAG, "Permission de localisation manquante - ouverture de MainActivity")
+                val mainIntent = Intent(context, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+                context.startActivity(mainIntent)
+                return
+            }
+
             Log.i(TAG, "Demarrage du service demande depuis le widget")
             context.startForegroundService(svc)
         }

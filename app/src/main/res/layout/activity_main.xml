@@ -22,7 +22,28 @@
         android:text="Fake GPS"
         android:textColor="#884CAF50"
         android:textSize="16sp"
-        android:layout_marginBottom="48dp" />
+        android:layout_marginBottom="32dp" />
+
+    <!-- Statut de la permission de localisation -->
+    <TextView
+        android:id="@+id/tv_permission_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Permission localisation : requise"
+        android:textColor="#FFFF5722"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Bouton accorder la permission (masque si deja accordee) -->
+    <Button
+        android:id="@+id/btn_grant_permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accorder la permission de localisation"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF5722"
+        android:layout_marginBottom="32dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -31,16 +52,16 @@
         android:textColor="#CCFFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="12dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1.  Activez les Options developpeur\n    (Parametres > A propos > taper 7x sur le numero de build)\n\n2.  Appuyez sur le bouton ci-dessous\n    puis selectionnez FGPS comme\n    Application de position fictive\n\n3.  Ajoutez le widget FGPS sur votre ecran d&#8217;accueil\n\n4.  Appuyez sur le widget pour activer / desactiver"
+        android:text="1.  Accordez la permission ci-dessus\n\n2.  Activez les Options developpeur\n    (Parametres > A propos > taper 7x sur le numero de build)\n\n3.  Appuyez sur le bouton ci-dessous\n    puis selectionnez FGPS comme\n    Application de position fictive\n\n4.  Ajoutez le widget FGPS sur votre ecran d&#8217;accueil\n\n5.  Appuyez sur le widget pour activer / desactiver"
         android:textColor="#AAFFFFFF"
         android:textSize="14sp"
         android:lineSpacingMultiplier="1.4"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="32dp" />
 
     <!-- Raccourci direct vers les Options developpeur -->
     <Button
@@ -49,7 +70,6 @@
         android:layout_height="wrap_content"
         android:text="Ouvrir les Options developpeur"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#4CAF50"
-        android:padding="14dp" />
+        android:backgroundTint="#4CAF50" />
 
 </LinearLayout>
